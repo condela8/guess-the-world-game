@@ -2,7 +2,7 @@
 
 const guessedLetters = document.querySelector(".guessed-letters");
 const guessButton= document.querySelector(".guess");
-const textInput= document.querySelector(".text");
+const textInput= document.querySelector(".letter");
 const wordInProgress = document.querySelector(".word-in-progress");
 const remaining = document.querySelector(".remaining");
 const remainingGuess = document.querySelector(".remaining span");
@@ -13,9 +13,9 @@ const word = "magnolia";
 const guessedLetter = [];
 
 //function to add placeholders
-const addPlaceholders = function(text){
+const addPlaceholders = function(word){
   const placeholders =[];
-  for(const letters of text){
+  for(const letters of word){
     console.log(letters);
     placeholders.push("●");
  }
@@ -31,6 +31,7 @@ guessButton.addEventListener("click", function(e){
     const inputValue =textInput.value;
     console.log(inputValue);
     const validInput = checkInput(inputValue);
+    textInput.value = "";
     //console.log(validInput);
     if(validInput){
         makeGuess(inputValue);_
@@ -53,7 +54,7 @@ const checkInput = function(input){
     }
 
     // Input character
-    else if(input.match(acceptedLetter)){
+    else if(!input.match(acceptedLetter)){
         message.innerText = " You entered a character, please enter a letter ";
 
     }
@@ -61,7 +62,8 @@ const checkInput = function(input){
     else{
         return input;
     }
-}
+    
+};
 const makeGuess = function(letter){
     letter=letter.toUpperCase();
     if(guessedLetter.includes(letter)){
@@ -74,7 +76,7 @@ const makeGuess = function(letter){
     }
 
    
-}
+};
 
 
 
